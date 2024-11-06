@@ -1,0 +1,6 @@
+@pluralsight.curso.unit.test_HostAddress = http://localhost:5206
+
+GET {{pluralsight.curso.unit.test_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
