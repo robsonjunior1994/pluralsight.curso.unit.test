@@ -1,6 +1,6 @@
-﻿using pluralsight.curso.unit.test.Models;
+﻿using GameEngine.Models;
 
-namespace TestProject
+namespace GameEngine.Tests
 {
     public class PlayerCharacterShould
     {

@@ -1,10 +1,24 @@
 ﻿using System;
 
-namespace pluralsight.curso.unit.test.Models
+namespace GameEngine.Models
 {
     public class PlayerCharacter
     {
-        public int Health { get; set; }
+        private int _health;
+
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
+        public string Nickname { get; set; }
+        public int Health
+        {
+            get => _health;
+            set
+            {
+                _health = value;
+            }
+        }
 
         public PlayerCharacter()
         {

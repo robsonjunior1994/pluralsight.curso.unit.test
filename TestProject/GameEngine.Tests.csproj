@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pluralsight.curso.unit.test\pluralsight.curso.unit.test.csproj" />
+    <ProjectReference Include="..\pluralsight.curso.unit.test\GameEngine.csproj" />
   </ItemGroup>
 
   <ItemGroup>
