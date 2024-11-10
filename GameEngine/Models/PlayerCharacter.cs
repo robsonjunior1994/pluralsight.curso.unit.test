@@ -45,7 +45,12 @@ namespace GameEngine.Models
         }
         private void CreateStatingWeapons()
         {
-            //throw new NotImplementedException();
+            Weapons = new List<string>
+            {
+                "Long Bow",
+                "Short Bow",
+                "Short Sword"
+            };
         }
 
         private string? GenerateRandomFirstName()

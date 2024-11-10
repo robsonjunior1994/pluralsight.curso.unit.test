@@ -1,4 +1,5 @@
 ﻿using GameEngine.Models;
+using Moq;
 
 namespace GameEngine.Tests
 {
@@ -130,6 +131,59 @@ namespace GameEngine.Tests
             //Assert
             Assert.Null(sut.Nickname);
             //Assert.NotNull(sut.Nickname); Esse teste quebra, mas é só para mostrar outra opção.
+        }
+
+        [Fact]
+        public void HaveALongBow()
+        {
+            //Arrange
+            PlayerCharacter sut = new();
+
+            //Assert
+            Assert.Contains("Long Bow", sut.Weapons);
+        }
+
+        [Fact]
+        public void NotHaveAStaffWonder()
+        {
+            //Arrange
+            PlayerCharacter sut = new();
+
+            //Assert
+            Assert.DoesNotContain("Staff Of Wonder", sut.Weapons);
+        }
+
+        [Fact]
+        public void HaveAtLeastOneKindOfSword()
+        {
+            //Arrange
+            PlayerCharacter sut = new();
+
+            //Assert
+            Assert.Contains(sut.Weapons, weapon => weapon.Contains("Sword"));
+        }
+
+        [Fact]
+        public void HaveAllExpectedWeapons()
+        {
+            PlayerCharacter sut = new();
+            var expectedWeapons = new List<string>()
+            {
+                "Long Bow",
+                "Short Bow",
+                "Short Sword"
+            };
+
+            Assert.Equal(expectedWeapons, sut.Weapons);
+
+        }
+
+        [Fact]
+        public void HaveNoEmptyDefaultdWeapons()
+        {
+            PlayerCharacter sut = new();
+
+            Assert.All(sut.Weapons, weapon => Assert.False(string.IsNullOrWhiteSpace(weapon)));
         }
 
         [Theory]
