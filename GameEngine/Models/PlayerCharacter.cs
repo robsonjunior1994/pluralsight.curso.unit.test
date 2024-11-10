@@ -1,12 +1,11 @@
-﻿using System;
-
+﻿
 namespace GameEngine.Models
 {
     public class PlayerCharacter
     {
         private int _health;
 
-
+        public bool IsNoob { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";
@@ -20,9 +19,11 @@ namespace GameEngine.Models
             }
         }
 
+
         public PlayerCharacter()
         {
             Health = 100;
+            IsNoob = true;
         }
 
         public void Sleep()
