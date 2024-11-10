@@ -121,6 +121,17 @@ namespace GameEngine.Tests
             Assert.NotEqual(101, sut.Health);
         }
 
+        [Fact]
+        public void NotHaveNickNameByDefault()
+        {
+            //Arrange
+            PlayerCharacter sut = new PlayerCharacter();
+            
+            //Assert
+            Assert.Null(sut.Nickname);
+            //Assert.NotNull(sut.Nickname); Esse teste quebra, mas é só para mostrar outra opção.
+        }
+
         [Theory]
         [InlineData(1)]
         public void ADataDrivenTest(int valor)

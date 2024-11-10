@@ -3,7 +3,7 @@ namespace GameEngine.Models
 {
     public class PlayerCharacter
     {
-        private int _health;
+        private int _health = 100;
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -15,7 +15,7 @@ namespace GameEngine.Models
             set
             {
                 _health = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
         public bool IsNoob { get; set; }
