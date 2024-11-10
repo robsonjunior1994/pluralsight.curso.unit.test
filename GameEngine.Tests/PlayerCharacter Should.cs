@@ -24,7 +24,9 @@ namespace GameEngine.Tests
             sut.Sleep();
 
             //Assert
+            //Assert.True(sut.Health >= 101 && sut.Health <= 200);
             Assert.InRange(sut.Health, 101, 200);
+
         }
 
         [Fact]
@@ -97,6 +99,26 @@ namespace GameEngine.Tests
 
             //Assert
             Assert.Matches("[A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+", sut.FullName);
+        }
+
+        [Fact]
+        public void StartWithDefaultHealth()
+        {
+            //Arrange
+            PlayerCharacter sut = new PlayerCharacter();
+
+            //Assert
+            Assert.Equal(100, sut.Health);
+        }
+
+        [Fact]
+        public void StartWithDefaultHealth_NotEqualExample()
+        {
+            //Arrange
+            PlayerCharacter sut = new PlayerCharacter();
+
+            //Assert
+            Assert.NotEqual(101, sut.Health);
         }
 
         [Theory]

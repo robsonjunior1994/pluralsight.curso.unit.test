@@ -5,7 +5,6 @@ namespace GameEngine.Models
     {
         private int _health;
 
-        public bool IsNoob { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";
@@ -16,14 +15,17 @@ namespace GameEngine.Models
             set
             {
                 _health = value;
+                OnPropertyChanged();
             }
         }
-
+        public bool IsNoob { get; set; }
+        public List<string> Weapons { get; set; }
 
         public PlayerCharacter()
         {
-            Health = 100;
+            FirstName = GenerateRandomFirstName();
             IsNoob = true;
+            CreateStatingWeapons();
         }
 
         public void Sleep()
@@ -36,6 +38,20 @@ namespace GameEngine.Models
         {
             var rnd = new Random();
             return rnd.Next(1, 101);
+        }
+        private void OnPropertyChanged()
+        {
+            //throw new NotImplementedException();
+        }
+        private void CreateStatingWeapons()
+        {
+            //throw new NotImplementedException();
+        }
+
+        private string? GenerateRandomFirstName()
+        {
+            //throw new NotImplementedException();
+            return null;
         }
     }
 }
