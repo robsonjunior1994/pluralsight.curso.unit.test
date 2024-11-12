@@ -5,6 +5,7 @@ namespace GameEngine.Tests
     public class BossEnemyShould
     {
         [Fact]
+        [Trait("Category", "Boss")]
         public void HaveCorrePower()
         {
             //Arrange
