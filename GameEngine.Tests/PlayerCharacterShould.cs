@@ -67,7 +67,7 @@ namespace GameEngine.Tests
             Assert.EndsWith("Junior", sut.FullName);
         }
 
-        [Fact]
+        [Fact(Skip = "Exemplo of skip test")]
         public void CalculeFullName_IgnoreCaseAssertExample()
         {
             //Arrange
