@@ -1,7 +1,11 @@
-﻿
-namespace GameEngine.Models
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace GameEngine
 {
-    public class PlayerCharacter
+    public class PlayerCharacter : INotifyPropertyChanged
     {
         private int _health = 100;
 
@@ -15,48 +19,80 @@ namespace GameEngine.Models
             set
             {
                 _health = value;
-                //OnPropertyChanged();
+                OnPropertyChanged();
             }
         }
         public bool IsNoob { get; set; }
         public List<string> Weapons { get; set; }
 
+        public event EventHandler<EventArgs> PlayerSlept;
+
         public PlayerCharacter()
         {
             FirstName = GenerateRandomFirstName();
+
             IsNoob = true;
-            CreateStatingWeapons();
+
+            CreateStartingWeapons();
         }
 
         public void Sleep()
         {
-            var heathIncrease = CalculateHealthIncrease();
-            Health += heathIncrease;
+            var healthIncrease = CalculateHealthIncrease();
+
+            Health += healthIncrease;
+
+            OnPlayerSlept(EventArgs.Empty);
         }
 
         private int CalculateHealthIncrease()
         {
             var rnd = new Random();
+
             return rnd.Next(1, 101);
         }
-        private void OnPropertyChanged()
+
+
+        protected virtual void OnPlayerSlept(EventArgs e)
         {
-            //throw new NotImplementedException();
+            PlayerSlept?.Invoke(this, e);
         }
-        private void CreateStatingWeapons()
+
+        public void TakeDamage(int damage)
+        {
+            Health = Math.Max(1, Health -= damage);
+        }
+
+        private string GenerateRandomFirstName()
+        {
+            var possibleRandomStartingNames = new[]
+            {
+                "Danieth",
+                "Derick",
+                "Shalnorr",
+                "G'Toth'lop",
+                "Boldrakteethtop"
+            };
+
+            return possibleRandomStartingNames[
+                new Random().Next(0, possibleRandomStartingNames.Length)];
+        }
+
+        private void CreateStartingWeapons()
         {
             Weapons = new List<string>
             {
                 "Long Bow",
                 "Short Bow",
-                "Short Sword"
+                "Short Sword",
             };
         }
 
-        private string? GenerateRandomFirstName()
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            //throw new NotImplementedException();
-            return null;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
