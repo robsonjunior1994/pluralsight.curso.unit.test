@@ -1,7 +1,4 @@
-﻿using GameEngine.Models;
-using Moq;
-
-namespace GameEngine.Tests
+﻿namespace GameEngine.Tests
 {
     public class PlayerCharacterShould
     {
@@ -208,9 +205,16 @@ namespace GameEngine.Tests
         }
 
         [Theory]
-        [InlineData(1)]
-        public void ADataDrivenTest(int valor)
+        //[MemberData("TestData", MemberType = typeof(InternalHealthDamageTestData))]
+        [MemberData(nameof(InternalHealthDamageTestData.TestData), MemberType = typeof(InternalHealthDamageTestData))]
+
+        public void TakeDamage(int damage, int expectativeHealth)
         {
+            PlayerCharacter sut = new();
+
+            sut.TakeDamage(damage);
+
+            Assert.Equal(expectativeHealth, sut.Health);
         }
     }
 }
