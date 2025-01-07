@@ -24,6 +24,11 @@ namespace CreditCardApplication
 
             var isValidFrequentFlyerNumber = _validator.IsValid(application.FrequentFlyerNumber);
 
+            if (!isValidFrequentFlyerNumber)
+            {
+                return CreditCardApplicationDecision.ReferredToHuman;
+            }
+
             if (application.Age <= AutoReferralMaxAge)
             {
                 return CreditCardApplicationDecision.ReferredToHuman;
