@@ -1,3 +1,5 @@
+using Moq;
+
 namespace CreditCardApplication.Tests
 {
     public class CreditCardApplicationEvaluatorShould
@@ -5,7 +7,8 @@ namespace CreditCardApplication.Tests
         [Fact]
         public void AcceptHighIncomeApplications()
         {
-            var sut = new CreditCardApplicationEvaluator(null);
+            var mock = new Mock<IFrequentFlyerNumberValidator>();
+            var sut = new CreditCardApplicationEvaluator(mock.Object);
 
             var application = new CreditCardApplication { GrossAnnualIncome = 100_000 };
 
@@ -17,7 +20,8 @@ namespace CreditCardApplication.Tests
         [Fact]
         public void RefererYoungApplications()
         {
-            var sut = new CreditCardApplicationEvaluator(null);
+            var mock = new Mock<IFrequentFlyerNumberValidator>();
+            var sut = new CreditCardApplicationEvaluator(mock.Object);
 
             var application = new CreditCardApplication { Age = 19 };
 
