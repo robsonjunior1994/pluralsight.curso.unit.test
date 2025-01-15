@@ -63,5 +63,26 @@ namespace CreditCardApplication.Tests
 
             Assert.Equal(CreditCardApplicationDecision.AutoDeclined, decision);
         }
+
+        [Fact]
+        public void DeclineLowIncomeApplicationsOutDemo()
+        { 
+            var mock = new Mock<IFrequentFlyerNumberValidator>();
+
+            bool isValid = true;
+            mock.Setup(x => x.IsValid(It.IsAny<string>(), out isValid));
+
+            var sut = new CreditCardApplicationEvaluator(mock.Object);
+
+            var application = new CreditCardApplication()
+            {
+                GrossAnnualIncome = 19_999,
+                Age = 42
+            };
+
+            var decision = sut.EvaluateUsingOut(application);
+
+            Assert.Equal(CreditCardApplicationDecision.AutoDeclined, decision);
+        }
     }
 }
