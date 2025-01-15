@@ -21,6 +21,9 @@ namespace CreditCardApplication.Tests
         public void RefererYoungApplications()
         {
             var mock = new Mock<IFrequentFlyerNumberValidator>();
+
+            mock.Setup(x => x.IsValid(It.IsAny<string>())).Returns(true);
+
             var sut = new CreditCardApplicationEvaluator(mock.Object);
 
             var application = new CreditCardApplication { Age = 19 };
