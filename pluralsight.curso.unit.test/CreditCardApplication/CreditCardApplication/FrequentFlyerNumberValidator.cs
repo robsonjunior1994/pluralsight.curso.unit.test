@@ -14,6 +14,8 @@
     /// </summary>
     public class FrequentFlyerNumberValidatorService : IFrequentFlyerNumberValidator
     {
+        public string LicenseKey => throw new NotImplementedException();
+
         public bool IsValid(string frequentFlyerNumber)
         {
             throw new NotImplementedException("Simulate this real dependency being hard to use");
